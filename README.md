@@ -1,0 +1,1 @@
+An android app where people can store their personal data in encrypted format and retrieve with a key anytime, anywhere and from any device.
