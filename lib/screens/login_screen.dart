@@ -1,17 +1,20 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:online_vault/screens/signup_details_screen.dart';
 import 'package:online_vault/services/auth.dart';
 
 class LoginScreen extends StatelessWidget {
+
   void _googleSignIn(BuildContext context) {
     authService.googleSignIn().then((user) {
-      if (user != null)
+      if (user != null) 
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => SignUpDetailsScreen()),
         );
     }).catchError((error) {
-      print('Google sign in error : $error');
+      print('$error');
     });
   }
 
