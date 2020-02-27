@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:online_vault/screens/signup_details_screen.dart';
+import 'package:online_vault/services/auth.dart';
 
 class LoginScreen extends StatelessWidget {
   void _googleSignIn(BuildContext context) {
-    // TODO: call googlesignin from AuthService and navigate to next page
-    Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (context) => SignUpDetailsScreen()));
+    authService.googleSignIn().then((user) {
+      if (user != null)
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => SignUpDetailsScreen()),
+        );
+    }).catchError((error) {
+      print('Google sign in error : $error');
+    });
   }
 
   @override
@@ -82,8 +89,8 @@ class LoginScreen extends StatelessWidget {
               'STEP : 1',
               style: TextStyle(
                 color: Colors.white70,
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w600,
+                fontSize: 20.0,
+                fontWeight: FontWeight.w600,
               ),
             ),
           ),
