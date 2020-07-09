@@ -11,16 +11,14 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  Widget _screen = SplashScreen();
+  Widget _screen = Center();
 
   @override
   Widget build(BuildContext context) {
     authService.getUser().then((user) {
-      if (user != null) {
-        setState(() {
-          _screen = HomeScreen();
-        });
-      }
+      setState(() {
+        _screen = (user != null) ? HomeScreen() : SplashScreen();
+      });
     });
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -28,6 +26,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primaryColor: Color.fromRGBO(164, 240, 158, 1.0),
         scaffoldBackgroundColor: Color.fromRGBO(46, 77, 52, 1.0),
+        accentColor: Color.fromRGBO(46, 77, 52, 1.0),
       ),
       home: _screen,
     );

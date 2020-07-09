@@ -1,17 +1,15 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:online_vault/screens/signup_details_screen.dart';
+import 'package:online_vault/screens/home_screen.dart';
 import 'package:online_vault/services/auth.dart';
 
 class LoginScreen extends StatelessWidget {
 
   void _googleSignIn(BuildContext context) {
     authService.googleSignIn().then((user) {
-      if (user != null) 
+      if (user != null)
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => SignUpDetailsScreen()),
+          MaterialPageRoute(builder: (context) => HomeScreen()),
         );
     }).catchError((error) {
       print('$error');
@@ -83,17 +81,6 @@ class LoginScreen extends StatelessWidget {
               child: Image(
                 height: 50.0,
                 image: AssetImage('assets/images/google.png'),
-              ),
-            ),
-          ),
-          SizedBox(height: 30.0),
-          Center(
-            child: Text(
-              'STEP : 1',
-              style: TextStyle(
-                color: Colors.white70,
-                fontSize: 20.0,
-                fontWeight: FontWeight.w600,
               ),
             ),
           ),
